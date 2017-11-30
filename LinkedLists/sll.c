@@ -73,35 +73,43 @@ void insertAfter(int data, int existing, struct Node** head) {
     }
 }
 
-void deleteBegin(struct Node** head) {
+int deleteBegin(struct Node** head) {
     struct Node* start = *head;
     if (start == NULL) {
         printf("ERROR: List is empty, cannot delete.");
     }
     else if (start->next == NULL) {
         *head = NULL;
+        int data = start->data;
         free(start);
+        return data;
     }
     else {
         *head = start->next;
+        int data = start->data;
         free(start);
+        return data;
     }
 }
 
-void deleteEnd(struct Node** head) {
+int deleteEnd(struct Node** head) {
     struct Node* start = *head;
     if (start == NULL) {
         printf("ERROR: List is empty, cannot delete.");
     }
     else if (start->next == NULL){
         *head = NULL;
+        int data = start->data;
         free(start);
+        return data;
     }
     else {
         while(start->next->next != NULL) {
             start = start->next;
         }
+        int data = start->next->data;
         free(start->next);
         start->next = NULL;
+        return data;
     }
 }
